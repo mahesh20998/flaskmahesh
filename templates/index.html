@@ -6,7 +6,7 @@
             $(function(){
                 $("#myid").click(function(e) {
                    $.ajax({
-                    url: '/testing',
+                    url: '{{ url_for("testing") }}',
                     success: function(response) {
                         console.log(response);
                     }
