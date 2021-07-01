@@ -4,6 +4,7 @@ import sys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+from webdriver_manager.chrome import ChromeDriverManager
 
 app = Flask(__name__)
 app.secret_key =  'mahesh'
@@ -17,7 +18,7 @@ def testing():
     print("here")
     chrome_options = Options()
     chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"]) 
-    driver = webdriver.Chrome(options = chrome_options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options = chrome_options)
     driver.get('https://www.google.co.in/')
     driver.find_element_by_name("q").send_keys("mahesh")
     return "Success"
