@@ -18,7 +18,7 @@ def testing():
     print("here")
     chrome_options = Options()
     chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"]) 
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options = chrome_options)
+    driver = webdriver.Chrome(executable_path="./chromedriver.exe", options = chrome_options)
     driver.get('https://www.google.co.in/')
     driver.find_element_by_name("q").send_keys("mahesh")
     return "Success"
