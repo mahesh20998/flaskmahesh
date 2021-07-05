@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 from webdriver_manager.chrome import ChromeDriverManager
 import os
+from pyvirtualdisplay import Display
 
 app = Flask(__name__)
 app.secret_key =  'mahesh'
@@ -17,6 +18,9 @@ def index():
 @app.route("/testing")
 def testing():
     print("here")
+# Add following 2 line before start the Chrome
+    display = Display(visible=0, size=(800, 800))  
+    display.start()
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--no-sandbox") 
