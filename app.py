@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from webdriver_manager.chrome import ChromeDriverManager
+import os
 
 app = Flask(__name__)
 app.secret_key =  'mahesh'
@@ -16,12 +17,14 @@ def index():
 @app.route("/testing")
 def testing():
     print("here")
-    chrome_options = Options()
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"]) 
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options = chrome_options)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-sh-usage")
+    driver = webdriver.Chrome(executable_path = os.environ.get("CHROMEDRIVER_PATH") , options = chrome_options)
     driver.get('https://www.google.co.in/')
     driver.find_element_by_name("q").send_keys("mahesh")
     return "Success"
 
 if __name__ == "__main__":
-    app.run(debug=True, port=33507)
+    app.run(debug=True)
