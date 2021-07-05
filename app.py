@@ -20,6 +20,7 @@ def testing():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--single-process")
     chrome_options.add_argument("--disable-dev-sh-usage")
     driver = webdriver.Chrome(executable_path = os.environ.get("CHROMEDRIVER_PATH") , options = chrome_options)
     driver.get('https://www.google.co.in/')
